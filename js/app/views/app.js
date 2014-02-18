@@ -57,7 +57,6 @@ define([
 		this.$('#page-' + page).show();
 		this.$('#nav-' + page).addClass('active');
 
-		this.model.set('welcomeMessage', "Welcome to the Weather Watcher's " + page + " page!");
 	},
 
 	});
