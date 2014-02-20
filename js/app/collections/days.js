@@ -17,9 +17,7 @@ define([
 				return response.forecast.simpleforecast.forecastday;
 			},
 
-			initialize: function(collection, options) {
-				this.url = options.url;
-			}
+
 		});
 
 		return DaysCollection;	

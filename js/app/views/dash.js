@@ -3,8 +3,8 @@ define([
 	'underscore',
 	'backbone',
 	'app/collections/places',
-	'app/templates'
-], function ($, _, Backbone, PlacesCollection, Templates) {
+	'app/views/place'
+], function ($, _, Backbone, PlacesCollection, PlaceView) {
 	'use strict';
 
 	var DashView = Backbone.View.extend({
@@ -16,6 +16,8 @@ define([
 
 
 		].join(''),
+
+		views: [],
 
 		initialize: function(){
 			this.$el.html(this.html);
@@ -31,21 +33,33 @@ define([
 			}
 		},
 
-		render: function(){
+		render: function() {
+			var that = this;
+			this.cleanUp();
 
 			if (this.collection.length) {
-				var placesHtml = [];
-
 				this.collection.each(function (element, index, list){
-					placesHtml.push(Templates['place'](element.toJSON()));
+					var place = new PlaceView({
+						model: element,
+						id: ['place-',element.get('countryCode'),'-',element.get('name')].join('')
+					});
+					that.$placesList.append(place.render().el);
+					that.views.push(place);
 				});
 
-				this.$placesList.html(placesHtml.join(''));
 			} else {
-				this.$placesList.html('Sorry, no places at the moment.')
-			}
-			
+				this.$placesList.html('Sorry, no places at the moment.');
+			}		
 			return this;
+		},
+
+		cleanUp: function() {
+			
+			for(var i = 0; i<this.views.length; i++) {
+				this.views[i].remove();
+			}
+			this.views.length = 0;
+			this.$placesList.html('');
 		}
 
 	});
