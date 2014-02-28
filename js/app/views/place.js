@@ -5,6 +5,7 @@ define([
 	'app/templates',
 	'app/collections/days'
 ], function ($, _, Backbone, Templates, DaysCollection) {
+	
 	'use strict';
 
 	var PlaceView = Backbone.View.extend({
@@ -49,7 +50,7 @@ define([
 				daysHtml.push(
 					Templates['day'](element.toJSON())
 				);
-			})
+			});
 			this.$bodyEl.html(daysHtml.join(''));
 		}
 

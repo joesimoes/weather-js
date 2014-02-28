@@ -5,6 +5,7 @@ define([
 	'app/collections/places',
 	'app/views/place'
 ], function ($, _, Backbone, PlacesCollection, PlaceView) {
+	
 	'use strict';
 
 	var DashView = Backbone.View.extend({
@@ -12,12 +13,16 @@ define([
 		html: [
 			'<h3>Dashboard page</h3>',
 			'<div id="places-list" class="clearfix">Loading...</div>',
-			'<div id="dash-buttons"></div>'
-
-
+			'<div id="dash-buttons"></div>',
+				'<button id="btn-add-new" type="button" class="btn btn-default">Add New</button>',
+			'</div>'
 		].join(''),
 
 		views: [],
+
+		events: {
+			'click #btn-add-new': 'addNewPlace'
+		},
 
 		initialize: function(){
 			this.$el.html(this.html);
