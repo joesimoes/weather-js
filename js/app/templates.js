@@ -24,6 +24,19 @@ define([
 		'</div>'
 	].join('');
 
+	Templates['modal'] = [
+		'<div class="modal fade">',
+			'<div class="modal-dialog">',
+				'<div class="modal-content">',
+					'<div class="modal-header">',
+						'<div class="button" class="close" data-dismiss="modal" aria-hidden="true">',
+						'<h4 class="modal-title"><%=title %></div></h4>',
+					'</div>',
+					'<div class="modal-body">test</div>',
+				'</div>',
+			'</div>',
+		'</div>'	
+	].join('');
 
 	for (var tmpl in Templates) {
 		if (Templates.hasOwnProperty(tmpl)) {

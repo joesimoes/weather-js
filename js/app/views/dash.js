@@ -3,8 +3,9 @@ define([
 	'underscore',
 	'backbone',
 	'app/collections/places',
-	'app/views/place'
-], function ($, _, Backbone, PlacesCollection, PlaceView) {
+	'app/views/place',
+	'app/views/add_place'
+], function ($, _, Backbone, PlacesCollection, PlaceView, AddPlaceView) {
 	
 	'use strict';
 
@@ -56,6 +57,16 @@ define([
 				this.$placesList.html('Sorry, no places at the moment.');
 			}		
 			return this;
+		},
+
+		addNewPlace: function(e) {
+			var modal = new AddNewPlace({
+				title: 'Add a new place',
+				id: 'modal-add-new-place',
+				collection: this.collection
+			});
+			modal.show();
+			
 		},
 
 		cleanUp: function() {
